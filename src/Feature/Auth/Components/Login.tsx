@@ -3,7 +3,7 @@ import { Eye, EyeOff, Mail, Lock } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 
 interface LoginProps {
-  onLogin: (email: string, password: string) => boolean;
+  onLogin?: (email: string, password: string) => boolean;
 }
 
 export default function Login({ onLogin }: LoginProps) {
@@ -14,7 +14,7 @@ export default function Login({ onLogin }: LoginProps) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const success = onLogin(email, password);
+    const success = onLogin ? onLogin(email, password) : true;
     if (success) {
       navigate("/dashboard"); // redirige al panel
     }

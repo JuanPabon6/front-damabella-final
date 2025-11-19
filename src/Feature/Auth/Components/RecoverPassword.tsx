@@ -3,7 +3,7 @@ import { Mail } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 
 interface RecoverProps {
-  onRecover: (email: string) => void;
+  onRecover?: (email: string) => void;
 }
 
 export default function RecoverPassword({ onRecover }: RecoverProps) {
@@ -13,7 +13,7 @@ export default function RecoverPassword({ onRecover }: RecoverProps) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onRecover(email);
+    onRecover?.(email);
     setMessage(`Se ha enviado un email a ${email}`);
     setTimeout(() => {
       navigate("/login"); // Redirige al login después de 2 segundos

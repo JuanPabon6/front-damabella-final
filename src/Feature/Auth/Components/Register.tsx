@@ -3,7 +3,7 @@ import { Eye, EyeOff, Mail, Lock, Phone, FileText, MapPin, ArrowLeft } from "luc
 import { Link, useNavigate } from "react-router-dom";
 
 interface RegisterProps {
-  onRegister: (
+  onRegister?: (
     name: string,
     email: string,
     password: string,
@@ -55,7 +55,9 @@ export default function Register({ onRegister }: RegisterProps) {
     }
 
     setError("");
-    const success = onRegister(name, email, password, phone, documentType, documentNumber, address);
+const success = onRegister ? onRegister(
+  name, email, password, phone, documentType, documentNumber, address
+) : true;
     if (success) {
       navigate("/login");
     }
